@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <NavBar />
       {/* <p className="">Hello World DericaMudu is Here</p> */}
-      <p className="m-5">A Measuring App for Grains</p>
+      <p className="m-5 font-weight-bold">A Measuring App for Grains</p>
       <Scale />
     </div>
   );
