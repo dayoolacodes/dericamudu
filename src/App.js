@@ -1,24 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+import NavBar from './component/NavBar'
+import Scale from './component/Scale'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar />
+      {/* <p className="">Hello World DericaMudu is Here</p> */}
+      <p className="m-5">A Measuring App for Grains</p>
+      <Scale />
     </div>
   );
 }
