@@ -26,6 +26,7 @@ class Scale extends Component {
 
      handleTitle=(id)=>{
         this.setState({initialId: id})
+        
      }
      
      handleTitle2=(id)=>{
@@ -36,7 +37,7 @@ class Scale extends Component {
         let valTyped = e.target.value
         let val = this.state.scale[this.state.initialId].measure
         let val2 = this.state.scale[this.state.initialId2].measure
-        this.state.initialId === 0 || this.state.initialId2 === 0 ? this.setState({value: "VALUE"}) : 
+        this.state.initialId === 0 ? this.setState({value: "Value"}) : 
         this.setState({value: valTyped + " " + val + " equals '--' "+ val2})
     }
 
@@ -72,10 +73,9 @@ class Scale extends Component {
                     onClick={() => this.handleTitle2(s.id - 1)}
                     >{s.measure}</Dropdown.Item>)}
                     </DropdownButton>
-                    <br />
-                    <Button className="shadow" variant="outline-info" href="/"> Reset </Button>
+                    <br/>
+                <Button className="shadow btn" variant="outline-info" href="/"> Reset </Button>
                 </Card.Body>
-                
             </Card>
             </>
         );
