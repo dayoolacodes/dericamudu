@@ -8,6 +8,7 @@ class Scale extends Component {
         value: "VALUE",
         initialId: 0,
         initialId2: 0,
+        initialGrainValue: 0,
         scale: [
         {id:1, measure: "Select Measure"},
         {id:2, measure: "Tomato Cup"}, 
@@ -20,10 +21,20 @@ class Scale extends Component {
         {id:9, measure: "Bag"},
         {id:10, measure: "Kilograms"}
          ],
-
+         grain: [
+            {id:1, value: "Select Grain"},
+            {id:2, value: "Rice"}, 
+            {id:3, value: "Beans"},
+            {id:4, value: "Garri"},
+            {id:5, value: "Wheat"},
+        ]
          
      }
 
+     handleGrainValue=(id)=>{
+        this.setState({initialGrainValue: id})
+        
+     }
      handleTitle=(id)=>{
         this.setState({initialId: id})
         
@@ -38,17 +49,28 @@ class Scale extends Component {
         let val = this.state.scale[this.state.initialId].measure
         let val2 = this.state.scale[this.state.initialId2].measure
         this.state.initialId === 0 ? this.setState({value: "Value"}) : 
-        this.setState({value: valTyped + " " + val + " equals '--' "+ val2})
+        this.setState({value: valTyped + " " + val + " equals '--' in "+ val2})
+    }
+
+    handleValueRes=()=>{
+        if(this.state.initialGrainValue!==0&&this.state.initialId!==0&&this.state.initialId2!==0)
+        console.log("Value Manager");
+        // this.setState({value: valTyped + " " + val + " equals '--' in "+ val2})
     }
 
     render() { 
         return ( 
             <>
             <Card border="light" style={{ width: '20rem' }} className="mx-auto m-5 shadow-sm">
-                <Card.Header className="font-italic font-weight-bold text-success">MEASURING CALCULATOR</Card.Header>
+                <Card.Header className="font-italic font-weight-bold text-success">
+                <DropdownButton variant="outline-success" title={this.state.grain[this.state.initialGrainValue].value}>
+                    {this.state.grain.map(s  =>  
+                    <Dropdown.Item key={s.id} onClick={() => this.handleGrainValue(s.id - 1)}>{s.value}
+                    </Dropdown.Item>)}
+                </DropdownButton>
+                </Card.Header>
                 <Card.Body>
-                <Card.Title>{this.state.value}</Card.Title>
-                            
+                <Card.Title>{this.state.value}</Card.Title>     
                     <InputGroup>
                             <FormControl
                             placeholder="Enter Quantity"
@@ -59,6 +81,7 @@ class Scale extends Component {
                             <DropdownButton
                             // as={InputGroup.Append}
                             variant="secondary"
+                            className="font-italic"
                             title={this.state.scale[this.state.initialId].measure} 
                             // id="input-group-dropdown-2"
                             >{this.state.scale.map(s  =>  <Dropdown.Item key={s.id}
