@@ -36,7 +36,9 @@ class Scale extends Component {
         
      }
      handleTitle=(id)=>{
-        this.setState({initialId: id})
+        let val = id===0? " " : this.state.scale[id].measure
+        let setValue = this.state.value+" "+val
+        this.setState({initialId: id, value: setValue})
         
      }
      
@@ -48,8 +50,9 @@ class Scale extends Component {
         let valTyped = e.target.value
         let val = this.state.scale[this.state.initialId].measure
         let val2 = this.state.scale[this.state.initialId2].measure
-        this.state.initialId === 0 ? this.setState({value: "Value"}) : 
-        this.setState({value: valTyped + " " + val + " equals '--' in "+ val2})
+        this.setState({value: valTyped})
+        // this.state.initialId === 0 ? this.setState({value: "Value"}) : 
+        // this.setState({value: valTyped + " " + val + " equals '--' in "+ val2})
     }
 
     handleValueRes=()=>{
