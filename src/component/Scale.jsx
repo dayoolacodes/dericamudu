@@ -9,12 +9,13 @@ class Scale extends Component {
         initialId: 0,
         initialId2: 0,
         initialGrainValue: 0,
+        
         scale: [
         {id:1, measure: "Select Measure"},
         {id:2, measure: "Tomato Cup"}, 
         {id:3, measure: "Milk Cup"},
         {id:4, measure: "Half-Derica Cup"},
-        {id:5, measure:"Mudu (Congo)"},
+        {id:5, measure:"Mudu/Congo"},
         {id:6, measure: "Derica Cup"},
         {id:7, measure: "Big Derica Cup"},
         {id:8, measure: "Paint Container"},
@@ -36,20 +37,20 @@ class Scale extends Component {
         
      }
      handleTitle=(id)=>{
-        let val = id===0? " " : this.state.scale[id].measure
-        let setValue = this.state.value+" "+val
+         const val = id<=0? " " : this.state.scale[id].measure + "(s) "
+         const setValue= this.state.value==='VALUE'? "VALUE" : this.state.value+" "+val
         this.setState({initialId: id, value: setValue})
-        
      }
      
      handleTitle2=(id)=>{
-        this.setState({initialId2: id})
+        let val = id===0||this.state.value==='VALUE'? " " : "is appr {--} " + this.state.scale[id].measure
+        this.setState({initialId2: id, value: this.state.value+" "+val}) 
      }
 
     handleValue=(e)=>{
         let valTyped = e.target.value
-        let val = this.state.scale[this.state.initialId].measure
-        let val2 = this.state.scale[this.state.initialId2].measure
+        // let val = this.state.scale[this.state.initialId].measure
+        // let val2 = this.state.scale[this.state.initialId2].measure
         this.setState({value: valTyped})
         // this.state.initialId === 0 ? this.setState({value: "Value"}) : 
         // this.setState({value: valTyped + " " + val + " equals '--' in "+ val2})
@@ -66,7 +67,7 @@ class Scale extends Component {
             <>
             <Card border="light" style={{ width: '20rem' }} className="mx-auto m-5 shadow-sm">
                 <Card.Header className="font-italic font-weight-bold text-success">
-                <DropdownButton variant="outline-success" title={this.state.grain[this.state.initialGrainValue].value}>
+                <DropdownButton variant="success" title={this.state.grain[this.state.initialGrainValue].value}>
                     {this.state.grain.map(s  =>  
                     <Dropdown.Item key={s.id} onClick={() => this.handleGrainValue(s.id - 1)}>{s.value}
                     </Dropdown.Item>)}
